@@ -174,6 +174,10 @@ class GenerateBlocks_Dynamic_CSS {
 			$value = $value . $unit;
 		}
 
+		if ( strpos( $value, '--global' ) === 0 ) {
+			$value = 'var(' . $value . ')';
+		}
+
 		$this->_css .= $property . ':' . $value . ';';
 		return $this;
 	}

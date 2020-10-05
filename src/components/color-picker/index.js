@@ -7,7 +7,7 @@ import './editor.scss';
 
 const { Component } = wp.element;
 
-const { __ } = wp.i18n;
+const { __, sprintf } = wp.i18n;
 
 const {
 	Tooltip,
@@ -47,6 +47,8 @@ export default class GenerateBlocksColorPicker extends Component {
 			showPalette,
 			colorKey,
 		} = this.state;
+
+		const isGlobalColor = value && value.startsWith( '--global' ) ? true : false;
 
 		return (
 			<BaseControl className={
@@ -139,7 +141,7 @@ export default class GenerateBlocksColorPicker extends Component {
 							</BaseControl>
 						}
 
-						{ ! showPalette && alpha &&
+						{ ! showPalette && alpha && ! isGlobalColor &&
 							<div className="gblocks-component-color-opacity">
 								<Tooltip text={ __( 'Opacity', 'generateblocks' ) }>
 									{ getIcon( 'gradient' ) }
@@ -173,7 +175,39 @@ export default class GenerateBlocksColorPicker extends Component {
 								</Button>
 
 								<BaseControl
-									label={ false }
+									label={ __( 'Global color palette', 'generateblocks' ) }
+									className="gblocks-component-color-picker-palette"
+								>
+									<div className="components-circular-option-picker">
+										{ Object.keys( generateBlocksInfo.globalColorPalette ).map( ( key ) =>
+											<div className="components-circular-option-picker__option-wrapper" key={ key }>
+												{ /* translators: %s: values associated with CSS syntax, 'Pixel', 'Em', 'Percentage' */ }
+												<Tooltip text={ sprintf( __( '%s', 'generateblocks' ), key ) } key={ key }>
+													<Button
+														key={ key }
+														className="components-circular-option-picker__option"
+														isPrimary={ value === key }
+														aria-pressed={ value === key }
+														/* translators: %s: values associated with CSS syntax, 'Pixel', 'Em', 'Percentage' */
+														aria-label={ sprintf( __( '%s Units', 'generateblocks' ), key ) }
+														onClick={ () => {
+															if ( key === value ) {
+																onChange( '' );
+															} else {
+																onChange( key );
+															}
+														} }
+														style={ { backgroundColor: 'var(' + key + ')', color: 'var(' + key + ')' } }
+													/>
+												</Tooltip>
+											</div>
+										) }
+									</div>
+
+								</BaseControl>
+
+								<BaseControl
+									label={ __( 'Theme color palette', 'generateblocks' ) }
 									className="gblocks-component-color-picker-palette"
 								>
 									<ColorPalette
@@ -189,7 +223,7 @@ export default class GenerateBlocksColorPicker extends Component {
 									/>
 								</BaseControl>
 
-								{ alpha &&
+								{ alpha && ! isGlobalColor &&
 									<div className="gblocks-component-color-opacity">
 										<Tooltip text={ __( 'Opacity', 'generateblocks' ) }>
 											{ getIcon( 'gradient' ) }

@@ -52,6 +52,7 @@ function generateblocks_do_block_editor_assets() {
 			'hasWideAlignSupport' => current_theme_supports( 'align-wide' ),
 			'colorComponentDiplay' => generateblocks_get_option( 'color_component_display' ),
 			'imageSizes' => $image_sizes,
+			'globalColorPalette' => generateblocks_get_option( 'global_palette' ),
 		)
 	);
 
@@ -100,6 +101,20 @@ function generateblocks_do_block_editor_assets() {
 			$generatepressDefaultStyling['buttonBackgroundHover'],
 			$generatepressDefaultStyling['buttonTextHover']
 		);
+
+		$global_colors = generateblocks_get_option( 'global_palette' );
+
+		$css .= ':root {
+			--global-accent: ' . $global_colors['--global-accent'] . ';
+			--global-accent2: ' . $global_colors['--global-accent2'] . ';
+			--global-contrast: ' . $global_colors['--global-contrast'] . ';
+			--global-contrast2: ' . $global_colors['--global-contrast2'] . ';
+			--global-contrast3: ' . $global_colors['--global-contrast3'] . ';
+			--global-contrast4: ' . $global_colors['--global-contrast4'] . ';
+			--global-base: ' . $global_colors['--global-base'] . ';
+			--global-base2: ' . $global_colors['--global-base2'] . ';
+			--global-base3: ' . $global_colors['--global-base3'] . ';
+		}';
 
 		wp_add_inline_style( 'generateblocks', $css );
 	}

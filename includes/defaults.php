@@ -409,6 +409,29 @@ function generateblocks_get_option_defaults() {
 		array(
 			'css_print_method' => 'file',
 			'color_component_display' => 'palette',
+			'global_palette' => array(
+				'--global-accent' => '#0366d6',
+				'--global-accent2' => '#0a57ae',
+				'--global-contrast' => '#000000',
+				'--global-contrast2' => '#292748',
+				'--global-contrast3' => '#36496e',
+				'--global-contrast4' => '#4c6598',
+				'--global-base' => '#fbfbfb',
+				'--global-base2' => '#f0f4f6',
+				'--global-base3' => '#ffffff',
+			),
+			'block_defaults' => array(
+				'button' => array(
+					'backgroundColor' => '#0366d6',
+					'textColor' => '#ffffff',
+					'backgroundColorHover' => '#222222',
+					'textColorHover' => '#ffffff',
+					'paddingTop' => '15',
+					'paddingRight' => '20',
+					'paddingBottom' => '15',
+					'paddingLeft' => '20',
+				),
+			),
 		)
 	);
 }

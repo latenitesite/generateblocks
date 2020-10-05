@@ -9,6 +9,10 @@ export default function hexToRGBA( hex, alpha ) {
 		return '';
 	}
 
+	if ( hex.startsWith( '--global' ) ) {
+		return 'var(' + hex + ')';
+	}
+
 	if ( ! alpha && 0 !== alpha ) {
 		return hex;
 	}
