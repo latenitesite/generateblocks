@@ -93,6 +93,12 @@ export default class MobileCSS extends Component {
 			cssObj[ '.editor-styles-wrapper ' + selector ].push( {
 				'display': inlineWidthMobile ? inlineWidthValue : false, // eslint-disable-line quote-props
 			} );
+
+			if ( 'inline' === iconLocationMobile ) {
+				cssObj[ '.editor-styles-wrapper ' + selector ].push( {
+					'flex-direction': 'row',
+				} );
+			}
 		}
 
 		if ( borderSizeTopMobile || borderSizeRightMobile || borderSizeBottomMobile || borderSizeLeftMobile ) {

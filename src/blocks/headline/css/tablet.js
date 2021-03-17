@@ -93,6 +93,12 @@ export default class TabletCSS extends Component {
 			cssObj[ '.editor-styles-wrapper ' + selector ].push( {
 				'display': inlineWidthTablet ? inlineWidthValue : false, // eslint-disable-line quote-props
 			} );
+
+			if ( 'inline' === iconLocationTablet ) {
+				cssObj[ '.editor-styles-wrapper ' + selector ].push( {
+					'flex-direction': 'row',
+				} );
+			}
 		}
 
 		if ( borderSizeTopTablet || borderSizeRightTablet || borderSizeBottomTablet || borderSizeLeftTablet ) {

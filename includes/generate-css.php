@@ -1235,6 +1235,8 @@ function generateblocks_get_dynamic_css( $content = '' ) {
 
 						if ( 'above' === $settings['iconLocationTablet'] ) {
 							$tablet_css->add_property( 'flex-direction', 'column' );
+						} elseif ( 'inline' === $settings['iconLocationTablet'] ) {
+							$tablet_css->add_property( 'flex-direction', 'row' );
 						}
 
 						$tablet_css->set_selector( $selector . ' .gb-icon' );
@@ -1287,6 +1289,8 @@ function generateblocks_get_dynamic_css( $content = '' ) {
 
 						if ( 'above' === $settings['iconLocationMobile'] ) {
 							$mobile_css->add_property( 'flex-direction', 'column' );
+						} elseif ( 'inline' === $settings['iconLocationMobile'] ) {
+							$tablet_css->add_property( 'flex-direction', 'row' );
 						}
 
 						$mobile_css->set_selector( $selector . ' .gb-icon' );
